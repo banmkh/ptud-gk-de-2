@@ -6,7 +6,6 @@
     <title>{% block title %}Task Manager{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -15,8 +14,11 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     {% if 'user' in session %}
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('routes.manage_categories') }}">Categories</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a></li>
+                        <li class="nav-item">
+                            <img src="https://avatar.iran.liara.run/public/{{ session['user_id'] }}" class="rounded-circle" width="40" height="40">
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('routes.manage_categories') }}">Categories</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a></li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('routes.register') }}">Register</a></li>
@@ -43,5 +45,6 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>
