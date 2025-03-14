@@ -1,0 +1,7 @@
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+.completed-task {
+    background-color: #d4edda !important;
+}
