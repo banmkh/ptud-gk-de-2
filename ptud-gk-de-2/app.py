@@ -13,7 +13,13 @@ db.init_app(app)
 app.register_blueprint(routes)
 app.register_blueprint(auth, url_prefix='/auth')
 
+def create_database():
+    """ Tạo database nếu chưa tồn tại """
+    if not os.path.exists("database.db"):
+        with app.app_context():
+            db.create_all()
+        print("Created database!")
+
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
+    create_database()  # Đảm bảo database được tạo
     app.run(debug=True)

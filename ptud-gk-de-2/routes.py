@@ -30,20 +30,6 @@ def index():
     return render_template('index.html', tasks=tasks, categories=categories, selected_category=category_id)
 
 
-@routes.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        if username and password:
-            # Giả lập lưu user vào session (thay bằng database sau này)
-            session['user'] = username
-            session['role'] = 'user'
-            flash('Registration successful! Please log in.', 'success')
-            return redirect(url_for('auth.login'))
-        flash('Please enter a valid username and password', 'danger')
-    return render_template('register.html')
-
 @routes.route('/categories', methods=['GET', 'POST'])
 @login_required
 def manage_categories():
